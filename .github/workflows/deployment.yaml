@@ -1,0 +1,33 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
+kind: Deployment 
+metadata: 
+  name: web_serv-deployment 
+spec: 
+  selector: 
+    matchLabels: 
+      app: web_serv 
+  replicas: 3 # tells deployment to run 2 pods matching the template 
+  template:
+    metadata: 
+      labels: 
+        app: web_serv 
+    spec: 
+      containers: 
+      - name: web_serv 
+        image: https://hub.docker.com/repository/docker/fdehech/my_project:main
+        ports: 
+        - containerPort: 80 
+--- 
+# https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service  
+kind: Service 
+apiVersion: v1 
+metadata: 
+  name: web_serv-service 
+spec: 
+  selector: 
+    app: web_serv 
+  ports: 
+  - protocol: TCP 
+    port: 80 
+    targetPort: 80 
+  type: LoadBalancer 
