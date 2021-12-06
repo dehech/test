@@ -14,7 +14,7 @@ spec:
     spec: 
       containers: 
       - name: web_serv 
-        image: https://hub.docker.com/repository/docker/fdehech/my_project:main
+        image: https://hub.docker.com/repository/docker/fdehech/my_project
         ports: 
         - containerPort: 80 
 --- 
