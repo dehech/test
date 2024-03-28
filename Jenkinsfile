@@ -38,7 +38,7 @@ pipeline {
         container('docker') {
           script {
             // Build the Docker image
-            def appImage = docker.build("fdehech/deploy:${env.BUILD_NUMBER}", "-f build/docker/Dockerfile .")
+            def appImage = docker.build("fdehech/deploy:${env.BUILD_NUMBER}", "-f ./Dockerfile .")
             // Push the Docker image to your Docker registry
             docker.withRegistry('', '10') {
               appImage.push()
