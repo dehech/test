@@ -1,49 +1,51 @@
 pipeline {
-    agent any
-    
-
-    environment {
-        DOCKER_HUB_CREDENTIALS = '10'
-        DOCKER_IMAGE_NAME = 'deploy'
-        DOCKER_IMAGE_TAG = 'latest'
+  agent {
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: git
+            image: alpine/git:latest
+            command:
+            - cat
+            tty: true
+          - name: docker
+            image: docker:latest
+            command:
+            - cat
+            tty: true
+            volumeMounts:
+             - mountPath: /var/run/docker.sock
+               name: docker-sock
+          volumes:
+          - name: docker-sock
+            hostPath:
+              path: /var/run/docker.sock    
+        '''
     }
-    stages {
-        stage('Checkout') {
-            steps {
-                // Checkout your source code from GitHub
-                // git 'https://github.com/your-username/your-repo.git'
-                checkout scm
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        // Checkout your source code
+        checkout scm
+     }
+  }
+  stage('Build Docker Image') {
+      steps {
+        container('docker') {
+          script {
+            // Build the Docker image
+            def appImage = docker.build("fdehech/deploy:${env.BUILD_NUMBER}", "-f build/docker/Dockerfile .")
+            // Push the Docker image to your Docker registry
+            docker.withRegistry('', '10') {
+              appImage.push()
             }
+          }
         }
-        
-        stage('Build') {
-            steps {
-                // Build Docker image
-                script {
-                    docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", "-f ./Dockerfile .")
-                }
-            }
-        }
-        
-        stage('Push') {
-            steps {
-                // Push Docker image to Docker Hub
-                script {
-                    docker.withRegistry('', DOCKER_HUB_CREDENTIALS) {
-                    //docker.withRegistry(credentialsId: DOCKER_HUB_CREDENTIALS) {
-                        docker.image("fdehech/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
-                    }
-                }
-            }
-        }
+      }
     }
-    
-    post {
-        success {
-            echo 'Build and push to Docker Hub succeeded!'
-        }
-        failure {
-            echo 'Build or push to Docker Hub failed!'
-        }
-    }
+  }
 }
