@@ -3,7 +3,7 @@ pipeline {
     
 
     environment {
-        DOCKER_HUB_CREDENTIALS = '11'
+        DOCKER_HUB_CREDENTIALS = '10'
         DOCKER_IMAGE_NAME = 'testapp'
         DOCKER_IMAGE_TAG = 'latest'
     }
