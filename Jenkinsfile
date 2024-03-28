@@ -5,7 +5,7 @@ pipeline {
     environment {
         DOCKER_HUB_CREDENTIALS = '10'
         DOCKER_IMAGE_NAME = 'deploy'
-        DOCKER_IMAGE_TAG = 'latest'
+        DOCKER_IMAGE_TAG = 'v1'
     }
     stages {
         stage('Checkout') {
