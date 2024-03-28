@@ -31,7 +31,7 @@ pipeline {
                 script {
                     docker.withRegistry('', DOCKER_HUB_CREDENTIALS) {
                     //docker.withRegistry(credentialsId: DOCKER_HUB_CREDENTIALS) {
-                        docker.image("fdehech/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
+                        docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
                     }
                 }
             }
