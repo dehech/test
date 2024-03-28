@@ -29,7 +29,7 @@ pipeline {
             steps {
                 // Push Docker image to Docker Hub
                 script {
-                    docker.withRegistry('fdehech/deploy:latest', '10') {
+                    docker.withRegistry('https://index.docker.io/fdehech/deploy', DOCKER_HUB_CREDENTIALS) {
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
                     }
                 }
