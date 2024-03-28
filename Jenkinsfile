@@ -3,7 +3,7 @@ pipeline {
     
 
     environment {
-        DOCKER_HUB_CREDENTIALS = '10'
+        DOCKER_HUB_CREDENTIALS = '11'
         DOCKER_IMAGE_NAME = 'testapp'
         DOCKER_IMAGE_TAG = 'latest'
     }
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 // Push Docker image to Docker Hub
                 script {
-                    docker.withRegistry('https://index.docker.io/fdehech/deploy', DOCKER_HUB_CREDENTIALS) {
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
                     }
                 }
