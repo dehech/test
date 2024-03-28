@@ -29,7 +29,7 @@ pipeline {
             steps {
                 // Push Docker image to Docker Hub
                 script {
-                    docker.withRegistry('https://index.docker.io/testapp:latest', DOCKER_HUB_CREDENTIALS) {
+                    docker.withRegistry('https://index.docker.io/testapp:latest', '10') {
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
                     }
                 }
