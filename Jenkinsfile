@@ -1,11 +1,13 @@
 pipeline {
     agent any
     
-
+    parameters {
+        string(defaultValue: 'latest', description: 'Tag for Docker image', name: 'DOCKER_IMAGE_TAG')
+    }
     environment {
         DOCKER_HUB_CREDENTIALS = '10'
         DOCKER_IMAGE_NAME = 'fdehech/deploy'
-        DOCKER_IMAGE_TAG = 'latest'
+        //DOCKER_IMAGE_TAG = 'latest'
     }
     stages {
         stage('Checkout') {
@@ -31,7 +33,7 @@ pipeline {
                 script {
                     docker.withRegistry('', DOCKER_HUB_CREDENTIALS) {
                     //docker.withRegistry(credentialsId: DOCKER_HUB_CREDENTIALS) {
-                        docker.image("${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}").push()
+                        docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
                     }
                 }
             }
