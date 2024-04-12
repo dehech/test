@@ -4,6 +4,10 @@ FROM php:8.1.12-apache
 # Définition du répertoire de travail dans le conteneur
 WORKDIR /var/www/html
 
+# Installer le module MySQLi
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
+
 # Copie des fichiers nécessaires dans le conteneur
 COPY . /var/www/html
 
