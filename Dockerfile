@@ -8,7 +8,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y mariadb-client
 WORKDIR /var/www/html
 
 # Installer le module MySQLi
-# RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
 
 # Copie des fichiers nécessaires dans le conteneur
