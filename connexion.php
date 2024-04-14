@@ -11,7 +11,7 @@
 <body>
 <?php   
     if(isset($_POST['button2'])) {
-        $link=mysqli_connect("localhost","root","","cuisinehub");
+        $link=mysqli_connect("db_mysql","root","","cuisinehub");
   /*  if ($link-> connect_error) 
         die("Connection failed: ". mysqli_connect_error());
     else{

@@ -10,7 +10,7 @@
 <body>
 <?php
  session_start();
- $link=mysqli_connect("localhost","root","","CuisineHub");
+ $link=mysqli_connect("db_mysql","root","","CuisineHub");
  $client=$_SESSION['user_id'];
  $q = "SELECT `id_commande`, `les_plats`, `montant` FROM commande WHERE `id_client`='$client'";
  $r=mysqli_query($link,$q);

@@ -11,7 +11,7 @@
 </head>
 <body>
 <?php
-        $link=mysqli_connect("localhost","root","","CuisineHub");
+        $link=mysqli_connect("db_mysql","root","","CuisineHub");
         if(isset($_POST['button1'])) {
               $nom = $_POST['nom'];
               $prenom = $_POST['pren'];

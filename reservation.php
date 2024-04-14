@@ -75,7 +75,7 @@
     <?php
         session_start();
         if (isset($_POST['b1']) && isset($_POST['table'])) {
-            $link=mysqli_connect("localhost","root","","CuisineHub");
+            $link=mysqli_connect("db_mysql","root","","CuisineHub");
             $user=$_SESSION['user_id'];
             $nump=$_POST['table'];
             echo 'test0';

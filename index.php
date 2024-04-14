@@ -183,7 +183,7 @@
 <?php
     
     if (isset($_POST['add_to_cart'])) {
-        $link=mysqli_connect("localhost","root","","CuisineHub");
+        $link=mysqli_connect("db_mysql","root","","CuisineHub");
         $cart_item_id = $_POST['cart_item_id'];
         $user=$_SESSION['user_id'];
         $q="select * from panier";

@@ -10,7 +10,7 @@
 <body>
     <?php
     session_start();
-    $link=mysqli_connect("localhost","root","","CuisineHub");
+    $link=mysqli_connect("db_mysql","root","","CuisineHub");
     $user=$_SESSION['user_id'];
     $q="select * from panier where '$user'=`id_client`";
     $r=mysqli_query($link,$q);

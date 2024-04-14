@@ -44,7 +44,7 @@
 </style>
 <body>
 <?php
-    $link=mysqli_connect("localhost","root","","CuisineHub");
+    $link=mysqli_connect("db_mysql","root","","CuisineHub");
    /* if ($link-> connect_error) 
     die("Connection failed: ". mysqli_connect_error());
     else{
