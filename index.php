@@ -1,3 +1,24 @@
+<?php
+    
+    if (isset($_POST['add_to_cart'])) {
+        $link=mysqli_connect("db_mysql","root","","CuisineHub");
+        $cart_item_id = $_POST['cart_item_id'];
+        $user=$_SESSION['user_id'];
+        $q="select * from panier";
+        $r=mysqli_query($link,$q);
+        if (mysqli_num_rows($r)==0){
+            $q="insert into panier values (1, '$user', '$cart_item_id')";
+            $r=mysqli_query($link,$q);
+        }else{
+            $q="select max(id_panier) from panier";
+            $r=mysqli_query($link,$q);
+            $row = mysqli_fetch_array($r);
+            $max_id_panier = $row[0];
+            $q="insert into panier values ('$max_id_panier'+1, '$user', '$cart_item_id')";
+            $r=mysqli_query($link,$q);
+        }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -180,26 +201,6 @@
 
     </div> 
     <!---------------------------------------------------------->
-<?php
-    
-    if (isset($_POST['add_to_cart'])) {
-        $link=mysqli_connect("db_mysql","root","","CuisineHub");
-        $cart_item_id = $_POST['cart_item_id'];
-        $user=$_SESSION['user_id'];
-        $q="select * from panier";
-        $r=mysqli_query($link,$q);
-        if (mysqli_num_rows($r)==0){
-            $q="insert into panier values (1, '$user', '$cart_item_id')";
-            $r=mysqli_query($link,$q);
-        }else{
-            $q="select max(id_panier) from panier";
-            $r=mysqli_query($link,$q);
-            $row = mysqli_fetch_array($r);
-            $max_id_panier = $row[0];
-            $q="insert into panier values ('$max_id_panier'+1, '$user', '$cart_item_id')";
-            $r=mysqli_query($link,$q);
-        }
-}
-?>
+
 </body>
 </html>

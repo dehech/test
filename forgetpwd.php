@@ -1,3 +1,20 @@
+<?php
+    $link=mysqli_connect("db_mysql","root","","CuisineHub");
+   /* if ($link-> connect_error) 
+    die("Connection failed: ". mysqli_connect_error());
+    else{
+    echo "Connected successfully";
+    echo "<br>";*/
+    if(isset($_POST['bot'])){
+        $mail=$_POST['b'];
+            $r="select * from client where `email`='$mail'";
+            $q=mysqli_query($link,$r);
+            if (mysqli_num_rows($q)==0)
+            header ("Location: client_inex.php");
+            else
+            header ("Location: sent_mail.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,23 +60,7 @@
     }
 </style>
 <body>
-<?php
-    $link=mysqli_connect("db_mysql","root","","CuisineHub");
-   /* if ($link-> connect_error) 
-    die("Connection failed: ". mysqli_connect_error());
-    else{
-    echo "Connected successfully";
-    echo "<br>";*/
-    if(isset($_POST['bot'])){
-        $mail=$_POST['b'];
-            $r="select * from client where `email`='$mail'";
-            $q=mysqli_query($link,$r);
-            if (mysqli_num_rows($q)==0)
-            header ("Location: client_inex.php");
-            else
-            header ("Location: sent_mail.php");
-    }
-?>
+
 <form method="POST" action="" >  
     <fieldset><legend>mot de passe oublié</legend>
         <table>
