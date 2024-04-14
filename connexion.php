@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/cnx.css">
 </head>
 <body>
-<?php   
+<?php
+ob_start();   
     if(isset($_POST['button2'])) {
         $link=mysqli_connect("db_mysql","root","","cuisinehub");
   /*  if ($link-> connect_error) 
