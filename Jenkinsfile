@@ -39,9 +39,11 @@ pipeline {
         }
         stage('trivy scan') {
             steps {
-                container('trivy') {
-                    sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL -o trivy_report.html --scanners vuln"
-                    sh "cat trivy_report.html"
+                script { 
+                    docker.image('bitnami/trivy:latest').inside {
+                        sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL -o trivy_report.html --scanners vuln"
+                        sh "cat trivy_report.html"
+                    }
                 }
             }
         }
