@@ -37,6 +37,14 @@ pipeline {
                 }
             }
         }
+        post {
+            success {
+                echo 'Build and push to Docker Hub succeeded!'
+            }
+            failure {
+                echo 'Build or push to Docker Hub failed!'
+            }
+        }
         stage('trivy scan') {
             steps {
                 container('trivy') {
@@ -48,12 +56,5 @@ pipeline {
 
     }
     
-    post {
-        success {
-            echo 'Build and push to Docker Hub succeeded!'
-        }
-        failure {
-            echo 'Build or push to Docker Hub failed!'
-        }
-    }
+
 }
