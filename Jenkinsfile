@@ -39,19 +39,20 @@ pipeline {
         }
         stage('trivy scan') {
             steps {
-                script { 
+                /*script { 
                     def trivyImage = docker.image('aquasec/trivy:canary')
                     trivyImage.pull()
-                 /*   docker.image('aquasec/trivy:canary').run("--entrypoint=''") {
+                    docker.image('aquasec/trivy:canary').run("--entrypoint=''") {
                         sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL -o trivy_report.html --scanners vuln"
                         //sh "cat trivy_report.html"
-                    }*/
+                    }
                 
                     trivyImage.inside("--entrypoint=''") {
                         sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL -o trivy_report.html --scanners vuln"
                         //sh "cat trivy_report.html"
                     }
-                }
+                } */
+                sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL --scanners vuln" > ${DOCKER_IMAGE_NAME}.json
             }
 
         }
