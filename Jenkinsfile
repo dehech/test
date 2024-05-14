@@ -25,7 +25,7 @@ pipeline {
                 }
             }
         }
-        
+        /*
         stage('Push') {
             steps {
                 // Push Docker image to Docker Hub
@@ -36,7 +36,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         stage('trivy scan') {
             steps {
                 /*script { 
