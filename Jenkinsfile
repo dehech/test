@@ -52,9 +52,9 @@ pipeline {
                         //sh "cat trivy_report.html"
                     }
                 } */
-                sh "touch /home/report.txt"
-                sh "chmod 777 /home/report.txt"
-                sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL --scanners vuln > /home/report.txt"
+                //sh "touch /home/report.txt"
+                //sh "chmod 777 /home/report.txt"
+                sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL --scanners vuln -o /home/report.txt"
             }
 
         }
