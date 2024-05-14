@@ -53,7 +53,7 @@ pipeline {
                     }
                 } */
                 
-                sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL --scanners vuln --output ${TMPDIR}/report.txt"
+                sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL --scanners vuln --output $pwd/report.txt"
             }
 
         }
