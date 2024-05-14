@@ -52,7 +52,7 @@ pipeline {
                         //sh "cat trivy_report.html"
                     }
                 } */
-                sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL --scanners vuln" > ${DOCKER_IMAGE_NAME}.json
+                sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL --scanners vuln" > report.txt
             }
 
         }
