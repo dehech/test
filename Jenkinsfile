@@ -56,7 +56,7 @@ pipeline {
                 //sh "chmod 777 /home/result"
                 //sh "touch /var/lib/jenkins/workspace/ci-cd/repo.txt"
                 //sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL --scanners vuln > /var/lib/jenkins/workspace/ci-cd/repo.txt"
-                sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}"
+                sh './run_trivy.sh'
             }
 
         }
