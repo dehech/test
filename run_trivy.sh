@@ -1,3 +1,3 @@
 #!/bin/bash
 
-trivy image <NOM_IMAGE_DOCKER > trivy_report.txt
+trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} > trivy_report.txt
