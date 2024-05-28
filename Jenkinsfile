@@ -16,7 +16,7 @@ pipeline {
                 checkout scm
             }
         }
-        /*
+        
         stage('Build') {
             steps {
                 // Build Docker image
@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-       */ 
+        
         stage('Set Permissions') {
             steps {
                 sh 'chmod +x /var/lib/jenkins/workspace/CI/run_trivy.sh'
