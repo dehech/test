@@ -16,7 +16,7 @@ pipeline {
                 checkout scm
             }
         }
-        
+        /*
         stage('Build') {
             steps {
                 // Build Docker image
@@ -25,7 +25,7 @@ pipeline {
                 }
             }
         }
-        /*
+        
         stage('Push') {
             steps {
                 // Push Docker image to Docker Hub
