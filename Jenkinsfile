@@ -37,9 +37,9 @@ pipeline {
                 }
             }
         }
-        stage('trivy scan') {
+       */ stage('trivy scan') {
             steps {
-                script { 
+              /*  script { 
                     def trivyImage = docker.image('aquasec/trivy:canary')
                     trivyImage.pull()
                     docker.image('aquasec/trivy:canary').run("--entrypoint=''") {
@@ -51,7 +51,7 @@ pipeline {
                         sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL -o trivy_report.html --scanners vuln"
                         //sh "cat trivy_report.html"
                     }
-                } 
+                } */
                 //sh "mkdir -p /home/result"
                 //sh "chmod 777 /home/result"
                 //sh "touch /var/lib/jenkins/workspace/ci-cd/repo.txt"
@@ -59,7 +59,7 @@ pipeline {
                 sh './run_trivy.sh'
             }
 
-        }*/
+        }
     }
     post {
         success {
