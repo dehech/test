@@ -45,7 +45,7 @@ pipeline {
         }
         stage('trivy scan') {
             steps {
-                sh '/var/lib/jenkins/workspace/CI/run_trivy.sh'
+                sh './run_trivy.sh'
             }
 
         }
