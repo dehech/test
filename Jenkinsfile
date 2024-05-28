@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }*/
-        stage('trivy scan') {
+      /*  stage('trivy scan') {
           /*  steps {
                 /*script { 
                     def trivyImage = docker.image('aquasec/trivy:canary')
@@ -60,7 +60,7 @@ pipeline {
             }*/
 
         } 
-    }
+  */  }
     post {
         success {
             echo 'Build and push to Docker Hub succeeded!'
