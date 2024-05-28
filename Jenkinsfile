@@ -36,10 +36,10 @@ pipeline {
                     }
                 }
             }
-        }*/
-      /*  stage('trivy scan') {
-          /*  steps {
-                /*script { 
+        }
+        stage('trivy scan') {
+            steps {
+                script { 
                     def trivyImage = docker.image('aquasec/trivy:canary')
                     trivyImage.pull()
                     docker.image('aquasec/trivy:canary').run("--entrypoint=''") {
@@ -57,10 +57,10 @@ pipeline {
                 //sh "touch /var/lib/jenkins/workspace/ci-cd/repo.txt"
                 //sh "trivy image ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} --severity HIGH,CRITICAL --scanners vuln > /var/lib/jenkins/workspace/ci-cd/repo.txt"
                 sh './run_trivy.sh'
-            }*/
+            }
 
-        } 
-  */  }
+        }*/
+    }
     post {
         success {
             echo 'Build and push to Docker Hub succeeded!'
