@@ -37,7 +37,13 @@ pipeline {
                 }
             }
         }
-       */ stage('trivy scan') {
+       */ 
+        stage('Set Permissions') {
+            steps {
+                sh 'chmod +x /var/lib/jenkins/workspace/CI/run_trivy.sh'
+            }
+        }
+        stage('trivy scan') {
             steps {
               /*  script { 
                     def trivyImage = docker.image('aquasec/trivy:canary')
