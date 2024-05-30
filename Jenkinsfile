@@ -54,6 +54,7 @@ pipeline {
         success {
             echo 'Build and push to Docker Hub succeeded!'
             echo "You can check the report of your Docker image at this link: /var/lib/jenkins/workspace/CI/trivy_report.txt."
+            echo 'test'
         }
         failure {
             echo 'Build or push to Docker Hub failed!'
